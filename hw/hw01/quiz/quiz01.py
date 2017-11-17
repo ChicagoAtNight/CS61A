@@ -6,7 +6,23 @@ def multiple(a, b):
     >>> multiple(14, 21)
     42
     """
-    "*** YOUR CODE HERE ***"
+    common_multiple = 1
+    factor = 2
+    while factor <= max(a,b):
+        if (a % factor == 0 and b % factor == 0):
+            common_multiple *= factor
+            a /= factor
+            b /= factor
+        elif (a % factor == 0):
+            common_multiple *= factor
+            a /= factor
+        elif (b % factor == 0):
+            common_multiple *= factor
+            b /= factor
+        else:
+            factor += 1
+            
+    return common_multiple
 
 def unique_digits(n):
     """Return the number of unique digits in positive integer n
@@ -24,4 +40,19 @@ def unique_digits(n):
     >>> unique_digits(10) # 0 and 1
     2
     """
-    "*** YOUR CODE HERE ***"
+    bitset = 0
+    num_digits = 0 
+    digit_counter = 1
+    if n == 0:
+        return 1
+    
+    while n > 0:
+        shifter = 1
+        ones_place = n % 10
+        shifter = shifter << ones_place
+        bitset |= shifter
+        n //= 10
+    for i in range(0,10):
+        num_digits += digit_counter & bitset
+        bitset = bitset >> 1
+    return num_digits

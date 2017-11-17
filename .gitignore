@@ -101,3 +101,8 @@ ENV/
 .mypy_cache/
 ok
 *.ok*
+
+Docs/
+
+# emacs temp files
+*~

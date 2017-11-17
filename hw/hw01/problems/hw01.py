@@ -74,13 +74,13 @@ def with_if_function():
     return if_function(c(), t(), f())
 
 def c():
-    "*** YOUR CODE HERE ***"
+    return False
 
 def t():
-    "*** YOUR CODE HERE ***"
+    return 1/0
 
 def f():
-    "*** YOUR CODE HERE ***"
+    return 1
 
 def hailstone(n):
     """Print the hailstone sequence starting at n and return its
