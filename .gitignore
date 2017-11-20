@@ -100,7 +100,9 @@ ENV/
 # mypy
 .mypy_cache/
 ok
-*.ok*
+.ok_history
+.ok_guidance
+.ok_storage
 
 Docs/
 
