@@ -42,7 +42,11 @@ def sum_digits(n):
     >>> sum_digits(1234567890)
     45
     """
-    "*** YOUR CODE HERE ***"
+    totalSum = 0
+    while n > 0:
+        totalSum += n % 10
+        n //= 10
+    return totalSum
 
 def double_eights(n):
     """Return true if n has two eights in a row.
