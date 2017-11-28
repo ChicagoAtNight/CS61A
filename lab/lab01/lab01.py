@@ -26,7 +26,11 @@ def repeated(f, n, x):
     >>> repeated(opposite, 3, 0)
     True
     """
-    "*** YOUR CODE HERE ***"
+    if n > 1:
+        n -= 1
+        return f(repeated(f, n, x))
+    else:
+        return f(x)
 
 def sum_digits(n):
     """Sum all the digits of n.
@@ -53,4 +57,13 @@ def double_eights(n):
     >>> double_eights(80808080)
     False
     """
-    "*** YOUR CODE HERE ***"
+    prev_is_eight = False
+    while n > 0:
+        if n % 10 == 8:
+            if prev_is_eight:
+                return True
+            prev_is_eight = True
+        else:
+            prev_is_eight = False
+        n //= 10
+    return False
