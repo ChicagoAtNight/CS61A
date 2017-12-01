@@ -29,7 +29,14 @@ def count_cond(condition):
     >>> count_primes(20)   # 2, 3, 5, 7, 11, 13, 17, 19
     8
     """
-    "*** YOUR CODE HERE ***"
+    def iterate_and_test_cond(n):
+        i, count = 1, 0
+        while i <= n:
+            if condition(n,i):
+                count += 1
+            i += 1
+        return count
+    return iterate_and_test_cond
 
 def cycle(f1, f2, f3):
     """Returns a function that is itself a higher-order function.
@@ -57,4 +64,20 @@ def cycle(f1, f2, f3):
     >>> do_two_cycles(1)
     19
     """
-    "*** YOUR CODE HERE ***"
+
+    def cycle_through_funcs(n):
+        def pass_arg_to_func(x):
+            i = 1
+            result = x
+            while i <= n:
+                if i % 3 == 1:
+                    result = f1(result)
+                elif i % 3 == 2:
+                    result = f2(result)
+                elif i % 3 == 0:
+                    result = f3(result)
+                i += 1
+            return result
+        return pass_arg_to_func
+        
+    return lambda n: cycle_through_funcs(n)
