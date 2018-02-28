@@ -166,7 +166,10 @@ def make_repeater(f, n):
     >>> make_repeater(square, 0)(5)
     5
     """
-    "*** YOUR CODE HERE ***"
+    if n > 0:
+        return compose1(f,make_repeater(f,n-1))
+    else:
+        return identity
 
 def compose1(f, g):
     """Return a function h, such that h(x) = f(g(x))."""
@@ -179,7 +182,8 @@ def compose1(f, g):
 ###################
 
 quine = """
-"*** YOUR CODE HERE ***"
+f='print("{0}".format(f))'
+print("{0}".format(f))
 """
 
 def zero(f):
@@ -190,11 +194,11 @@ def successor(n):
 
 def one(f):
     """Church numeral 1: same as successor(zero)"""
-    "*** YOUR CODE HERE ***"
+    return lambda x: f(x)
 
 def two(f):
     """Church numeral 2: same as successor(successor(zero))"""
-    "*** YOUR CODE HERE ***"
+    return lambda x: f(f(x))
 
 three = successor(two)
 
@@ -210,7 +214,15 @@ def church_to_int(n):
     >>> church_to_int(three)
     3
     """
-    "*** YOUR CODE HERE ***"
+    return n(lambda x: x + 1)(0)
+
+# case church_to_int(zero)
+# returns zero(lambda x: x + 1)(0) returns 0 because the first argument (the lambda) is ignored since it's never used in zero(f)
+# The second argument is passed into zero so lambda x: 0 always returns 0
+#
+# case church_to_int(one)
+# returns one(lambda x: x + 1)(0) returns 1 because lambda x: x + 1 is passed to the one function and looks like
+# lambda x: x + 1
 
 def add_church(m, n):
     """Return the Church numeral for m + n, for Church numerals m and n.
